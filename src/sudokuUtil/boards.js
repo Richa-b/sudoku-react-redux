@@ -875,7 +875,14 @@ const getRandomNumberBetweenRange =
 
 const board = (levelSelected) => {
     let level = levels[levelSelected];
-    return level[getRandomNumberBetweenRange(0, level.length - 1)]
+    return new Board(levelSelected , level[getRandomNumberBetweenRange(0, level.length - 1)])
+}
+
+class Board {
+    constructor(level,value){
+        this.level = level
+        this.value = value
+    }
 }
 
 export default board
