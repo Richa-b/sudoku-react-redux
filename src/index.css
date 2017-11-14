@@ -1,5 +1,50 @@
 body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
 }
+
+.game {
+    margin-top: auto;
+}
+
+.sudoku-table {
+    margin-left: auto;
+    margin-right: auto;
+    border: 3px solid black;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 15pt;
+}
+
+.sudoku-table input {
+    height: 30px;
+    width: 30px;
+    border: 0px;
+    text-align: center;
+    font-size: large;
+}
+
+.sudoku-table td {
+    border: 1px solid #000;
+    width: 35px;
+    height: 35px;
+}
+
+.non-editable input {
+    font-weight: bold;
+}
+
+.has-conflict input {
+    color: red;
+}
+
+.ri2, .ri5 {
+    border-bottom: 3px solid black !important;
+}
+
+.ci2, .ci5 {
+    border-right: 3px solid black !important;
+}
+
+
