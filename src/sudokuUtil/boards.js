@@ -883,7 +883,7 @@ export const chunks = (boardValue = []) => {
     let rows = []
     for (let i = 0; i < boardValue.length; i++) {
         const cellValue = boardValue[i]
-        boardRow.push(new Cell(cellValue === '0' ? '' : cellValue,rows.length,boardRow.length,
+        boardRow.push(new Cell(cellValue === '0' ? '' : cellValue, rows.length, boardRow.length,
             cellValue === '0'))
         if (i % 9 === 8) {
             rows.push(new Row(boardRow))
@@ -907,12 +907,78 @@ class Row {
 }
 
 class Cell {
-    constructor(value,rowIndex,columnIndex, isEditable = false) {
+    constructor(value, rowIndex, columnIndex, isEditable = false) {
         this.isEditable = isEditable
         this.hasConflict = false
         this.value = value
         this.rowIndex = rowIndex
         this.columnIndex = columnIndex
+    }
+}
+
+// checks if there is any conflict
+export const validateBoard = (board) => {
+
+    markAllWithoutConflicts(board)
+    //validate Vertical Row
+
+    for (let i = 0; i < 9; i++) {
+        let cellArray = []
+        for (let j = 0; j < 9; j++) {
+            cellArray.push(board.rows[j].cells[i])
+        }
+        checkSubset(cellArray)
+    }
+
+
+    // Validate Horizontal Row
+
+    for (let i = 0; i < 9; i++) {
+        let cellArray = []
+        for (let j = 0; j < 9; j++) {
+            cellArray.push(board.rows[i].cells[j])
+        }
+        checkSubset(cellArray)
+    }
+
+    //Validate square
+    for (let i = 0; i < 9; i += 3) {
+        for (let j = 0; j < 9; j += 3) {
+            validateSquare(i, i + 3, j, j + 3, board)
+        }
+    }
+
+}
+
+const validateSquare = (rowStartIndex, rowEndIndex, columnStartIndex, columnEndIndex, board) => {
+    let cellArray = []
+    for (let i = rowStartIndex; i < rowEndIndex; i++) {
+        for (let j = columnStartIndex; j < columnEndIndex; j++) {
+            cellArray.push(board.rows[i].cells[j])
+        }
+    }
+    checkSubset(cellArray)
+}
+
+const checkSubset = (cellArray) => {
+
+    let nums = {};
+    for (let counter = 0; counter < 9; counter++) {
+        let value = cellArray[counter].value
+        if (value !== '' && nums.hasOwnProperty(value)) {
+            cellArray[counter].hasConflict = true
+            cellArray[nums[value]].hasConflict = true
+        }
+        nums[value] = counter
+    }
+}
+
+
+const markAllWithoutConflicts = (board) => {
+    for (let i = 0; i < 9; i++) {
+        for (let j = 0; j < 9; j++) {
+            board.rows[i].cells[j].hasConflict = false
+        }
     }
 }
 

@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {Table} from "react-bootstrap";
-import {chunks} from "../sudokuUtil/boards";
+import Cell from "../containers/CellContainer";
 
 class Game extends Component {
 
@@ -34,21 +34,6 @@ class Game extends Component {
     }
 }
 
-class Cell extends Component {
-    render() {
-        let {cell} = this.props
-        let classes = []
-        cell.isEditable ? classes.push('editable') : classes.push('non-editable')
-        cell.hasConflict ? classes.push('has-conflict') : classes.push('')
-        classes.push('ci' + cell.columnIndex)
-        classes.push('ri' + cell.rowIndex)
-
-        return (
-            <td key={cell.columnIndex} className={classes.join(' ')}>
-                <input type='text' readOnly={!cell.isEditable} value={cell.value}/>
-            </td>)
-    }
-}
 
 export default Game
 

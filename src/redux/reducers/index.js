@@ -1,10 +1,10 @@
-import {setBoard} from "./BoardDetail";
+import {boardDetails} from "./BoardDetail";
 
 const combineReducers = (currentState, action) => {
 
     let nextState = Object.assign({}, currentState);
     nextState = {
-        board: setBoard(nextState.board, action)
+        board: boardDetails(nextState.board, action)
     }
 
     return nextState;
