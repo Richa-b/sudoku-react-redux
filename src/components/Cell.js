@@ -12,7 +12,7 @@ class Cell extends Component {
         let {cell, onChangeCellValue} = this.props;
         let value = e.target.value
 
-        if (cell.isEditable && (value !== '' && /^[1-9]$/.test(value))) {
+        if (cell.isEditable && (value === '' || /^[1-9]$/.test(value))) {
             cell.value = value
             onChangeCellValue(cell)
         }

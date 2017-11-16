@@ -1,4 +1,4 @@
-import board, {Board, validateBoard} from "../../sudokuUtil/boards";
+import board, {Board, validateBoard} from "../../util/sudoku";
 
 export const boardDetails = (boardState = new Board(), action) => {
     switch (action.type) {
