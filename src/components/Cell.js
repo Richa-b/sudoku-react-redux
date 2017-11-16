@@ -18,7 +18,7 @@ class Cell extends Component {
                     cell.value = e.target.value
                     return onChangeCellValue(cell)
                 }
-                } readOnly={!cell.isEditable} defaultValue={cell.value}/>
+                } readOnly={!cell.isEditable} value={cell.value}/>
             </td>)
     }
 }

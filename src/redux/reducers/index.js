@@ -1,8 +1,9 @@
 import {boardDetails} from "./BoardDetail";
+import cloneDeep from 'lodash.clonedeep'
 
-const combineReducers = (currentState, action) => {
+const combineReducers = (currentState={}, action) => {
 
-    let nextState = Object.assign({}, currentState);
+    let nextState = cloneDeep(currentState);
     nextState = {
         board: boardDetails(nextState.board, action)
     }
