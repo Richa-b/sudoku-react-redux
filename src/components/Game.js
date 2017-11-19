@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {Table} from "react-bootstrap";
 import Cell from "../containers/CellContainer";
+import Actions from "./Actions";
 
 class Game extends Component {
 
@@ -28,7 +29,9 @@ class Game extends Component {
                             })}
                         </tbody>
                     </Table>
+
                 }
+                <Actions board={board}/>
             </div>
         )
     }

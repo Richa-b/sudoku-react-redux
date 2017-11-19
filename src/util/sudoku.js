@@ -920,6 +920,8 @@ class Cell {
 export const validateBoard = (board) => {
 
     markAllWithoutConflicts(board)
+
+
     //validate Vertical Row
 
     for (let i = 0; i < 9; i++) {
@@ -980,6 +982,30 @@ const markAllWithoutConflicts = (board) => {
             board.rows[i].cells[j].hasConflict = false
         }
     }
+}
+
+
+export const isSudokuComplete = (board) => {
+
+    if (isBoardInitialized(board)) {
+        console.log("0")
+        for (let i = 0; i < 9; i++) {
+            for (let j = 0; j < 9; j++) {
+                if (board.rows[i].cells[j].hasConflict || board.rows[i].cells[j].value === null ||
+                    board.rows[i].cells[j].value === '') {
+                    return false
+                }
+            }
+        }
+    } else {
+        return false
+    }
+
+    return true
+}
+
+const isBoardInitialized = (board) => {
+    return (board.rows.length > 0)
 }
 
 export default board
